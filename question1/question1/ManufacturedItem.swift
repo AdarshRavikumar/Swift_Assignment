@@ -4,7 +4,7 @@ import Foundation
 
 
 class ManufacturedItem:ItemProtocol{
-    var tax: Double=0
+    var tax: Double = 0
 
     func calculateTax(price: Double) -> Double {
         /*
