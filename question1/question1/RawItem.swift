@@ -4,8 +4,8 @@ import Foundation
 
 
 class RawItem:ItemProtocol{
-    var tax:Double=0
-    func calculateTax(price:Double)->Double{
+    var tax:Double = 0
+    func calculateTax(price: Double) -> Double{
 
         /*
          Calculating Tax as per the type Raw
