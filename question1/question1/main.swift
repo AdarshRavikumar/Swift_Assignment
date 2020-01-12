@@ -2,10 +2,10 @@
 import Foundation
 
 protocol ItemProtocol {
-    func calculateTax(price: Double)-> Double
+    func calculateTax(price: Double) -> Double
 }
 
-enum ItemTypes: String{
+enum ItemTypes: String {
     case raw = "raw"
     case manufactured = "manufactured"
     case imported = "imported"
@@ -127,10 +127,11 @@ class Home{
             choice = readLine()!
             
         }
+            
         print("                                     Inventory                                        ")
         print("\n")
         print(" NAME ", "\t\t", " PRICE ", "\t\t", "Quantity", "\t\t  ", "TYPE", "\t\t  ", "TOTAL PRICE")
-    print("................................................................................................")
+        print("................................................................................................")
         
         for object in itemObjects {
            
