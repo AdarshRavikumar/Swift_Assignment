@@ -96,7 +96,7 @@ class UserDetails {
                 }
                 if  let courseType = CourseType(rawValue: courseType) {
                     courses.append(courseType)
-                    count+=1
+                    count += 1
                 }
                 else {
                     print("The Correct Course to be Specified")
