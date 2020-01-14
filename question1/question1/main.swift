@@ -64,14 +64,19 @@ class Home{
         }
                
         if(dictionaryforInput.keys.contains("-quantity")) {
-            quantity = Int(dictionaryforInput["-quantity"]!)
+            if let quantityOptional = dictionaryforInput["-quantity"] {
+                quantity = Int(quantityOptional)
+            }
+            
         }
         else {
            quantity = 1
         }
                
         if(dictionaryforInput.keys.contains("-price")) {
-            price = Double(dictionaryforInput["-price"]!)
+            if let priceOptional = dictionaryforInput["-price"] {
+            price = Double(priceOptional)
+            }
         }
         else {
            price = 0
@@ -124,7 +129,10 @@ class Home{
            
             
             print("Do you want to continue ? if yes, Press y or Y,else Press any key to exit")
-            choice = readLine()!
+            if let choiceOptional = readLine() {
+                
+                choice = choiceOptional
+            }
             
         }
             
