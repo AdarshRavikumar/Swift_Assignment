@@ -34,7 +34,6 @@ func readOneInput() -> Int {
 
 func readTwoInput() -> (input1: Int, input2: Int) {
     
-    
     if let input1 = readLine(), let input2 = readLine() {
         let intInput1 = Int(input1)
         let intInput2 = Int(input2)
@@ -47,8 +46,7 @@ func readTwoInput() -> (input1: Int, input2: Int) {
         }
         
     }
-    else
-    {
+    else {
         return (input1: -1, input2: -1)
     }
     
@@ -58,8 +56,6 @@ func readTwoInput() -> (input1: Int, input2: Int) {
 
 
 print( " Dependancy Graph Data Structure \n  ")
-//print(" Enter Number of vertices ")
-//let vertices = readOneInput()
 var graph = DependancyGraph()
 outerloop :while(true) {
     
@@ -106,8 +102,7 @@ outerloop :while(true) {
         if let value1 = Node.mapId[input.input1] , let value2 = Node.mapId[input.input2] {
             graph.addDependancy(id1: value1, id2: value2 )
         }
-        else
-        {
+        else {
             print("One or more Nodes Doesn't Exist !")
         }
         
@@ -161,11 +156,6 @@ outerloop :while(true) {
     default:
         print("Enter valid Option")
     }
-    
-    
-    
-    
-    
     
 }
 

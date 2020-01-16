@@ -12,7 +12,6 @@ class DependancyGraph : Operations {
     var reverseDependancyGraph: [[Int]] = [[]]
     
     init() {
-        
         for _ in 0...(capacity-1) {
             dependancyGraph.append([])
             reverseDependancyGraph.append([])
@@ -30,7 +29,6 @@ class DependancyGraph : Operations {
                 }
                 print("\n")
             }
-            
         }
         if(flag == false) {
             print("The Graph is Empty")
@@ -47,13 +45,11 @@ class DependancyGraph : Operations {
                 reverseDependancyGraph.append([])
             }
             DependancyGraph.incrementSize += 1
-            
         }
         if nodesOfGraph[id] == nil {
             nodesOfGraph[id] = node
         }
-        else
-        {
+        else {
             print("Node Already exists ")
         }
         
@@ -70,8 +66,6 @@ class DependancyGraph : Operations {
     func getAncestors(id: Int) -> [Int] {
         let dfs = DFS()
         return dfs.DFS(startingNode: id, graph: &reverseDependancyGraph)
-        
-        
     }
     
     func getDescendants(id: Int) -> [Int] {
@@ -122,15 +116,7 @@ class DependancyGraph : Operations {
     func deleteDependancy(parentId: Int, childId: Int) {
         
         dependancyGraph[parentId].removeAll (where: {$0 == childId} )
-        
         reverseDependancyGraph[childId].removeAll(where: {$0 == parentId })
-        
     }
-    
-    
-    
-    
-    
-    
     
 }
