@@ -95,6 +95,7 @@ class UserDetails {
                     continue
                 }
                 if  let courseType = CourseType(rawValue: courseType) {
+<<<<<<< HEAD
                     if(courses.contains(courseType)) {
                         print("This Course Already Taken By User !")
                     }
@@ -102,6 +103,10 @@ class UserDetails {
                         courses.append(courseType)
                         count+=1
                     }
+=======
+                    courses.append(courseType)
+                    count += 1
+>>>>>>> 90fa4723f41d7c24ee5dc0f1b6aa83b22e264626
                 }
                 else {
                     print("The Correct Course to be Specified")
