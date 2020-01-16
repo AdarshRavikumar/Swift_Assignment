@@ -8,7 +8,7 @@ enum CourseType: String{
 
 class UserDetails {
     // To check if RollNumber Already Exists
-    var RollSet = Set<Int>()
+    var rollSet = Set<Int>()
     var userObjects: [User] = []
     
     func addUser() {
@@ -17,8 +17,8 @@ class UserDetails {
         var rollNumber: Int?
         var address: String?
         var courses: [CourseType] = []
-        var flag = 0
-        var validator = 0
+        var flag = true
+        var validator = true
         
         // getting name from User
         print(" Enter Full Name ")
@@ -27,28 +27,28 @@ class UserDetails {
         }
         else{
             print(" Name Not entered ")
-            flag = 1
+            flag = false
         }
         
         // getting Roll Number From User
         
         print(" Enter Roll Number ")
-        validator = 0
-        while (validator == 0) {
+        validator = true
+        while (validator == true) {
             if let rollOptional = readLine() {
                 
-                if(validateStringToInt(input: rollOptional) == 0) {
-                    validator = 1
+                if(validateStringToInt(input: rollOptional)) {
+                    validator = false
                 }
                 else {
                     continue
                 }
                 rollNumber = Int(rollOptional)
-                if(RollSet.contains(rollNumber!)) {
+                if(rollSet.contains(rollNumber!)) {
                     print("Roll number already exists !! This User can't be added ")
                     return
                 }
-                RollSet.insert(rollNumber!)
+                rollSet.insert(rollNumber!)
             }
             
         }
@@ -56,11 +56,11 @@ class UserDetails {
         
         //getting Age From User
         print(" Enter Age ")
-        validator = 0
-        while (validator == 0) {
+        validator = true
+        while (validator == true) {
             if let ageOptional = readLine() {
-                if(validateStringToInt(input: ageOptional) == 0) {
-                    validator = 1
+                if(validateStringToInt(input: ageOptional)) {
+                    validator = false
                 }
                 else {
                     continue
@@ -76,7 +76,7 @@ class UserDetails {
         }
         else {
             print(" Address Not Entered ")
-            flag = 1
+            flag = false
         }
         
         //getting Courses from User
@@ -95,17 +95,21 @@ class UserDetails {
                     continue
                 }
                 if  let courseType = CourseType(rawValue: courseType) {
-                    courses.append(courseType)
-                    count+=1
+                    if(courses.contains(courseType)) {
+                        print("This Course Already Taken By User !")
+                    }
+                    else {
+                        courses.append(courseType)
+                        count+=1
+                    }
                 }
                 else {
                     print("The Correct Course to be Specified")
-                    
                 }
             }
         }
         
-        if(flag == 0 ) {
+        if(flag == true ) {
             if let nameEntered = name, let rollNumberEntered = rollNumber, let ageEntered = age, let addressEntered = address {
                 
                 let newUser = User(name: nameEntered, rollNumber: rollNumberEntered, age: ageEntered, address: addressEntered, course: courses)
@@ -193,22 +197,14 @@ class UserDetails {
         if let rollOptional = readLine() {
             let roll = Int(rollOptional)
             if let rollNumber = roll {
-                if(!RollSet.contains(rollNumber))
+                if(!rollSet.contains(rollNumber))
                 {
                     print("Invalid Roll Number !")
                     return
                 }
                 
-                var count = 0
-                for users in userObjects {
-                    if(users.rollNumber == rollNumber) {
-                        break
-                    }
-                    count+=1
-                    
-                }
-                userObjects.remove(at: count)
-                RollSet.remove(rollNumber)
+                userObjects.removeAll(where: {$0.rollNumber == rollNumber})
+                rollSet.remove(rollNumber)
                 print("User Removed Successfully !! ")
             }
         }
