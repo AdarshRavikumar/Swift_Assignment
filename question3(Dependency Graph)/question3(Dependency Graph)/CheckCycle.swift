@@ -10,7 +10,7 @@ class CheckCycle {
         }
         
         if(visited[id1]) {
-            return true
+            return false
         }
         
         visited[id1] = true
@@ -22,7 +22,7 @@ class CheckCycle {
             }
         }
         
-        ancestors[id1] = true
+        ancestors[id1] = false
         return false
         
         

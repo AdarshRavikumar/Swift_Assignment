@@ -11,11 +11,14 @@ class DependancyGraph : Operations {
     var hasCycle: Bool = false
     var reverseDependancyGraph: [[Int]] = [[]]
     
-    init() {
-        for _ in 0...(capacity-1) {
-            dependancyGraph.append([])
-            reverseDependancyGraph.append([])
+    func checkForMinusOne() -> Int {
+        
+        for keys in [Int](Node.revMapID.keys) {
+            if( Node.revMapID[keys] == -1 ) {
+                return keys
+            }
         }
+        return -1
     }
     
     func displayGraph(graph: [[Int]]) {
@@ -37,15 +40,7 @@ class DependancyGraph : Operations {
     
     func addNode(id: Int, node: Node) {
         DependancyGraph.count += 1
-        if (DependancyGraph.count == (100*DependancyGraph.incrementSize-1) )
-        {
-            //print(" Extending Array Size ")
-            for _ in 0...10 {
-                dependancyGraph.append([])
-                reverseDependancyGraph.append([])
-            }
-            DependancyGraph.incrementSize += 1
-        }
+        print("Size of dependancy graph ", dependancyGraph.count)
         if nodesOfGraph[id] == nil {
             nodesOfGraph[id] = node
         }
@@ -100,6 +95,8 @@ class DependancyGraph : Operations {
         dependancyGraph[id] = []
         reverseDependancyGraph[id] = []
         nodesOfGraph[id] = nil
+        Node.revMapID[id] = -1
+        DependancyGraph.count -= 1
         
         for ids in 0...(dependancyGraph.count-1) {
             if ( dependancyGraph[ids].contains(id) ) {

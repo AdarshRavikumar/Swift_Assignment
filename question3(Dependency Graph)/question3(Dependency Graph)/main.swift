@@ -1,8 +1,6 @@
 
 import Foundation
 
-
-
 func display(listofNodes: [Int]) {
     
     for node in listofNodes {
@@ -15,19 +13,19 @@ func display(listofNodes: [Int]) {
 
 func readOneInput() -> Int {
     
+    var valueToReturn : Int = 0
     if  let input1 = readLine() {
+        
         let inputToInt = Int(input1)
         if let inputToIntOptional = inputToInt {
-            return inputToIntOptional
+            valueToReturn = inputToIntOptional
         }
         else {
-            print("Wrong Type Entered . Only Integers Allowed ")
-            return -1
+            print("Wrong Type Entered . Only Integers Allowed. Enter again ")
+            valueToReturn = readOneInput()
         }
     }
-    else {
-        return -1
-    }
+    return valueToReturn
     
 }
 
@@ -42,13 +40,15 @@ func readTwoInput() -> (input1: Int, input2: Int) {
             return (input1: intInput1Optional, input2: intInput2Optional)
         }
         else {
-            return (input1: -1, input2: -1)
+            print(" one or more Input are entered wrong . Only Integers allowed ")
+            return readTwoInput()
         }
         
     }
     else {
         return (input1: -1, input2: -1)
     }
+    
     
 }
 
@@ -86,9 +86,20 @@ outerloop :while(true) {
         if let nameOptional = readLine() {
             name = nameOptional
         }
-        Node.mapId[id] = Node.counter
-        Node.revMapID[Node.counter] = id
-        Node.counter += 1
+        let result =  graph.checkForMinusOne()
+        if ( result != -1 ) {
+            Node.mapId[id] = result
+            Node.revMapID[result] = id
+            print("Here in if ")
+        }
+        else {
+            Node.mapId[id] = Node.counter
+            Node.revMapID[Node.counter] = id
+            Node.counter += 1
+            graph.dependancyGraph.append([])
+            graph.reverseDependancyGraph.append([])
+            print("Here in else ")
+        }
         if let value = Node.mapId[id]{
             let node = Node(id: value, name: name)
             graph.addNode(id: value, node: node)
