@@ -5,7 +5,7 @@ import Foundation
 
 class ManufacturedItem:ItemProtocol{
     var tax: Double = 0
-
+    
     func calculateTax(price: Double) -> Double {
         /*
          Calculating Tax as per the type manufactured
@@ -17,3 +17,4 @@ class ManufacturedItem:ItemProtocol{
         return tax
     }
 }
+
